@@ -22,7 +22,7 @@
           ><i class="fa fa-heart" style="font-size: 16px; color: red"></i
         ></span>
         <span class="tooltip" v-if="showProductAmount && hoveredProductId === product.id">
-          <span class="tooltiptext">- ${{ product.price }}</span>
+          <span class="tooltiptext">${{ product.price }}</span>
         </span>
       </div>
     </div>
@@ -32,10 +32,13 @@
       <div
         class="grid-item"
         v-for="(product, index) in favoriteProducts"
-        :key="index">
+        :key="index"
+          @mouseover="showAmount(product)"
+        @mouseleave="hideAmount(showProductAmount = false,hoveredProductId = null)"
+        >
         {{ product.product }}
-        <span v-if="showProductAmount && hoveredProductId === product.id">
-          - ${{ product.price }}
+        <span class="tooltip" v-if="showProductAmount && hoveredProductId === product.id">
+           <span class="tooltiptext">${{ product.price }}</span>
         </span>
       </div>
     </div>
